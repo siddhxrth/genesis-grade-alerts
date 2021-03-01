@@ -50,10 +50,10 @@ def sendNotification(method, gradeChangedMessage):
 
       client = Client(settings.TWILIO_ACCOUNT_SID, settings.TWILIO_AUTH_TOKEN)
 
-    #   message = client.messages.create(
-    #             to= settings.DESTINATION_PHONE_NUMBER, 
-    #             from_= settings.TWILIO_PHONE_NUMBER,
-    #             body=gradeChangedMessage)
+      message = client.messages.create(
+                to= settings.DESTINATION_PHONE_NUMBER, 
+                from_= settings.TWILIO_PHONE_NUMBER,
+                body=gradeChangedMessage)
 
       print(gradeChangedMessage + " sent to " + settings.DESTINATION_PHONE_NUMBER)
 
