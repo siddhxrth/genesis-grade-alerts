@@ -140,7 +140,7 @@
 ###
 
 #### How to run:
-#### Open a new terminal window in the folder which contains the files in this repo, and run ```python3 main.py```. This should run at the frequency that you specified in [.env](.env)! When your grades change, it will text you with your updated grades. It will be better if you have this program running 24/7, either through a web hosting service like [repl.it](repl.it) or on a computer you have lying around. A [Raspberry Pi](https://raspberrypi.org) is a great inexpensive computer that you can use as a local web server!
+#### Open a new terminal window in the folder which contains the files in this repo, and run ```python3 main.py```. This should run at the frequency that you specified in [.env](.env)! When your grades change, it will text you with your updated grades. It will be better if you have this program running 24/7, either through a web hosting service like [repl.it](https://repl.it) or on a computer you have lying around. A [Raspberry Pi](https://raspberrypi.org) is a great inexpensive computer that you can use as a local web server!
 
 #### Questions:
 #### If you have any questions, feel free to [email me](mailto:me@siddharthlohani.dev) or DM me on [Twitter](https://twitter.com/sidlohani)! If you do not have a computer which you can run this on, [email me](mailto:me@siddharthlohani.dev), and I can host it for you!
