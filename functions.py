@@ -97,6 +97,9 @@ def writeNewGrade(index, className, updatedGrade):
             f.write(grade + "\n")
 
 def checkAndUpdateGrades(driver):
+
+    driver.get("https://parents.ebnet.org/genesis/parents?tab1=studentdata&tab2=gradebook&tab3=weeklysummary&studentid=" + settings.STUDENT_ID + "&action=form")
+
     index = 0;
 
     for subject in settings.classes:
@@ -109,6 +112,6 @@ def checkAndUpdateGrades(driver):
         if(previousGrade != newGrade):
 
           sendNotification(settings.NOTIFICATION_METHOD, subject + " grade changed from " + str(previousGrade) + " to " + str(newGrade))
-          writeNewGrade(index, CLASS, newGrade)
+          writeNewGrade(index, subject, newGrade)
 
         index = index + 1
