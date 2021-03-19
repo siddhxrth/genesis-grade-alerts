@@ -30,19 +30,19 @@ STUDENT_ID = os.environ.get("STUDENT_ID")
 
 classes = {
 
-    "CLASS ONE": "XPATH ONE",
+    "English 10H": "/html/body/table[1]/tbody/tr[2]/td/table/tbody/tr[2]/td[3]/table/tbody/tr/td[1]/div",
 
-    "CLASS TWO": "XPATH TWO",
+    "AP US History": "/html/body/table[1]/tbody/tr[2]/td/table/tbody/tr[3]/td[3]/table/tbody/tr/td[1]/div",
 
-    "CLASS THREE": "XPATH THREE",
+    "Chem H": "/html/body/table[1]/tbody/tr[2]/td/table/tbody/tr[4]/td[3]/table/tbody/tr/td[1]/div",
 
-    "CLASS FOUR": "XPATH FOUR",
+    "Pre-Calc H": "/html/body/table[1]/tbody/tr[2]/td/table/tbody/tr[6]/td[3]/table/tbody/tr/td[1]/div",
 
-    "CLASS FIVE": "XPATH FIVE",
+    "Spanish V H": "/html/body/table[1]/tbody/tr[2]/td/table/tbody/tr[7]/td[3]/table/tbody/tr/td[1]/div",
 
-    "CLASS SIX": "XPATH SIX",
+    "AP CS A": "/html/body/table[1]/tbody/tr[2]/td/table/tbody/tr[8]/td[3]/table/tbody/tr/td[1]/div",
 
-    "CLASS SEVEN": "XPATH SEVEN"
+    "Physical Education": "/html/body/table[1]/tbody/tr[2]/td/table/tbody/tr[10]/td[3]/table/tbody/tr/td[1]/div"
     
     }
 
