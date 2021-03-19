@@ -28,13 +28,15 @@ chromeOptions.add_argument(f'user-agent={userAgent}')
 
 driver = webdriver.Chrome('chromedriver', options=chromeOptions)
 
-previousGrades = {"English 10H": "100%"}
+previousGrades = {}
 
 def run():
   functions.login(driver)
   functions.checkAndUpdateGrades(driver, previousGrades)
   functions.logout(driver)
 
-run()
+while True:
+  run()
+  time.sleep(1200)
 
           
