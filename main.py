@@ -37,6 +37,6 @@ def run():
 
 while True:
   run()
-  time.sleep(1200)
+  time.sleep(settings.REFRESH_INTERVAL * 60)
 
           

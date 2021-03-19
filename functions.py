@@ -87,3 +87,4 @@ def checkAndUpdateGrades(driver, previousGrades):
         if(previousGrade != newGrade):
           print(subject + " grade changed from " + str(previousGrade) + " to " + str(newGrade))
           sendNotification(settings.NOTIFICATION_METHOD, subject + " grade changed from " + str(previousGrade) + " to " + str(newGrade))
+          previousGrades[subject] = newGrade
