@@ -1,46 +1,27 @@
 # Genesis Grade Alerts
-#### A simple Python application which notifies users when their grades are updated in the Genesis Parent Portal via SMS, either through Gmail's SMTP server or via Twilio's SMS API.
+#### A simple Python application which notifies users when their grades are updated in the Genesis Parent Portal via SMS, either through Gmail's SMTP server or via Twilio's SMS API, or through the Spontit App (recommended).
 
 # Setup
-##### There are a few steps that you need to take in order to get this program working locally. The [.env](.env) file below has to be filled out correctly:
+##### There are a few steps that you need to take in order to get this program working locally. The [settings.py](settings.py) file below has to be filled out correctly:
 
-###
-
-        # parent portal credentials
-        PARENT_ACCESS_EMAIL = 
-        PARENT_ACCESS_PASSWORD = 
-        
-        # gmail credentials
-        GMAIL_ACCOUNT_EMAIL =
-        GMAIL_ACCOUNT_PASSWORD = 
-        
-        # twilio api keys
-        TWILIO_ACCOUNT_SID = 
-        TWILIO_AUTH_TOKEN = 
-        
-        # phone numbers for twilio
-        TWILIO_PHONE_NUMBER = 
-        DESTINATION_PHONE_NUMBER = 
-        
-        # phone number with carrier extention
-        PHONE_NUMBER_EMAIL = 
-        
-        # method of sending notifications (email or sms)
-        NOTIFICATION_METHOD = 
-        
-        # how often to run the program, in minutes
-        REFRESH_INTERVAL = 
-        
-        # your student ID
-        STUDENT_ID = 
         
 
-### 1) The first step is to fill out the Genesis username and password:
+### 1) There are some mandatory fields that you need to fill out. If you don't fill these out, it will not work.
 
-        # parent portal credentials
-        PARENT_ACCESS_EMAIL = 
-        PARENT_ACCESS_PASSWORD = 
-### 2) The second step is to either fill out your Gmail credentials or your Twilio API Keys - depending on which notification method you prefer
+        # credentials for parent access
+        PARENT_ACCESS_EMAIL  = ""
+        PARENT_ACCESS_PASSWORD  = ""
+
+        # either push, sms, or email
+        NOTIFICATION_METHOD = "push"
+
+        # in minutess
+        REFRESH_INTERVAL = 1
+
+        # school student id
+        STUDENT_ID = ""
+
+### 2) Now, you have to decide which notification mode you prefer. We currently support Twilio SMS, Gmail, or Spontit (recommended)
 ###
 #### 2a) If you prefer to be notified via email, fill out the Gmail credentials fields. For the password, your normal google password will not work, and you have to create an [app specific password](https://support.google.com/mail/answer/185833?hl=en-GB), and enter that password into the ``` GMAIL_ACCOUNT_PASSWORD``` field:
 
@@ -48,8 +29,8 @@
     GMAIL_ACCOUNT_EMAIL = # google account email
     GMAIL_ACCOUNT_PASSWORD = # app password
     
-    # phone number with carrier extention
-    PHONE_NUMBER_EMAIL =
+    # email you want to send notifications to
+    DESTINATION_EMAIL =
 
 #### If you prefer Email notifications, fill the ```PHONE_NUMBER_EMAIL ``` field with the destination email. If you would still like SMS notifications through email, you can look up your cellular carrier's extension to apply to the end of your phone number so that you can send emails to that email and have the emails be sent to your phone via SMS. If not, you can just fill this field out with the normal email that you would like these notifications to go to.
     
@@ -64,22 +45,17 @@
     DESTINATION_PHONE_NUMBER = 
 #### The ``` TWILIO_ACCOUNT_SID ``` and the ``` TWILIO_AUTH_TOKEN ``` should be available in your [Twilio](https://twilio.com) dashboard. ```TWILIO_PHONE_NUMBER``` should be the phone number that Twilio assigns to you, and ``` DESTINATION_PHONE_NUMBER ``` should be your phone number.
 
-#### 3) There are 3 fields left to fill out in the [.env](.env) file:
+#### 2c) If you want to be notified from Spontit's notification service, fill out your Spontit credentials:
 
-    # method of sending notifications (email or sms)
-    NOTIFICATION_METHOD = 
-    
-    # how often to run the program, in minutes
-    REFRESH_INTERVAL = 
-    
-    # your student ID
-    STUDENT_ID = 
-    
-#### For ``` NOTIFICATION_METHOD ```, enter either 'email' or 'sms'. This is case sensitive! Make sure that you have all neccesary fields for your notification method filled out, or else it won't work! For ``` REFRESH_INTERVAL ```, enter an integer which specifies the frequency that the program executes and checks your grades, in minutes. Lastly, for ``` STUDENT_ID ```, enter your student ID.
+    ###
+    ### ONLY FILL OUT IF USING SPONTIT FOR NOTIFICATIONS (RECOMMENDED)
+    ###
 
+    SPONTIT_USERNAME = ""
+    SPONTIT_SECCRET_KEY = ""
 ###
 
-#### We're done with the [.env](.env) file now! Now we have to update [settings.py](settings.py):
+#### Now we have to update the array of classes in [settings.py](settings.py):
 
     classes = {
     
@@ -133,6 +109,7 @@
         pip3 install schedule
         pip3 install python-dotenv
         pip3 install twilio
+        pip3 install spontit --upgrade && pip3 install requests
         
 #### Installing Selenium:
 ##### Selenium is necessary to have in order to run this program, as it depends on the selenium functionality in order to fetch Genesis and get grades. First, make sure you have the selenium python package installed: ```pip install selenium```. You also need to have chrome driver installed (or the driver for the browser that you use). For Chrome, you can go to this [website](https://chromedriver.chromium.org/) to install it. Make sure that you have the driver in your PATH. You can follow [this tutorial](https://www.browserstack.com/guide/run-selenium-tests-using-selenium-chromedriver) in order to do so. After this, the program should be ready to run! 

@@ -3,31 +3,28 @@ from dotenv import load_dotenv, find_dotenv
 
 load_dotenv(find_dotenv())
 
+
+
+
+
+###
+### YOU HAVE TO FILL OUT ALL OF THESE FIELDS FOR THE PROGRAM TO WORK
+###
+
 # credentials for parent access
-PARENT_ACCESS_EMAIL  = os.environ.get("PARENT_ACCESS_EMAIL")
-PARENT_ACCESS_PASSWORD  = os.environ.get("PARENT_ACCESS_PASSWORD")
+PARENT_ACCESS_EMAIL  = ""
+PARENT_ACCESS_PASSWORD  = ""
 
-# twilio api keys
-TWILIO_ACCOUNT_SID = os.environ.get("TWILIO_ACCOUNT_SID")
-TWILIO_AUTH_TOKEN = os.environ.get("TWILIO_AUTH_TOKEN")
+# either push, sms, or email
+NOTIFICATION_METHOD = "push"
 
-# gmail credentials
-GMAIL_ACCOUNT_EMAIL = os.environ.get("GMAIL_ACCOUNT_EMAIL")
-GMAIL_ACCOUNT_PASSWORD = os.environ.get("GMAIL_ACCOUNT_PASSWORD")
+# in minutess
+REFRESH_INTERVAL = 1
 
-# phone numbers
-TWILIO_PHONE_NUMBER = os.environ.get("TWILIO_PHONE_NUMBER")
-DESTINATION_PHONE_NUMBER = os.environ.get("DESTINATION_PHONE_NUMBER")
+# school student id
+STUDENT_ID = ""
 
-# phone number to email
-PHONE_NUMBER_EMAIL = os.environ.get("PHONE_NUMBER_EMAIL")
-
-NOTIFICATION_METHOD = os.environ.get("NOTIFICATION_METHOD")
-
-REFRESH_INTERVAL = os.environ.get("REFRESH_INTERVAL")
-
-STUDENT_ID = os.environ.get("STUDENT_ID")
-
+# replace this with your class names and XPATHs to them
 classes = {
 
     "English 10H": "/html/body/table[1]/tbody/tr[2]/td/table/tbody/tr[2]/td[3]/table/tbody/tr/td[1]/div",
@@ -46,3 +43,45 @@ classes = {
     
     }
 
+
+
+
+
+###
+### ONLY FILL OUT IF USING TWILIO FOR NOTIFICATIONS
+###
+
+# twilio api keys
+TWILIO_ACCOUNT_SID = ""
+TWILIO_AUTH_TOKEN = ""
+
+# phone numbers
+TWILIO_PHONE_NUMBER = ""
+DESTINATION_PHONE_NUMBER = ""
+
+
+
+
+
+###
+### ONLY FILL OUT IF USING EMAIL FOR NOTIFICATIONS
+###
+
+# gmail credentials
+GMAIL_ACCOUNT_EMAIL = ""
+GMAIL_ACCOUNT_PASSWORD = ""
+
+# email to send notifications to
+DESTINATION_EMAIL = ""
+
+
+
+
+
+
+###
+### ONLY FILL OUT IF USING SPONTIT FOR NOTIFICATIONS (RECOMMENDED)
+###
+
+SPONTIT_USERNAME = ""
+SPONTIT_SECCRET_KEY = ""

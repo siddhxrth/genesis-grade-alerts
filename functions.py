@@ -5,11 +5,15 @@ from selenium.webdriver.common.keys import Keys
 
 from twilio.rest import Client
 
+# push notifications
+from spontit import SpontitResource
+
 import time
 import smtplib
 
-
 import settings
+
+resource = SpontitResource(settings.SPONTIT_USERNAME, settings.SPONTIT_SECCRET_KEY)
 
 def login(driver):
     email = settings.PARENT_ACCESS_EMAIL
@@ -30,6 +34,8 @@ def login(driver):
     # switch siblings
     driver.get("https://parents.ebnet.org/genesis/parents?tab1=studentdata&tab2=gradebook&tab3=weeklysummary&studentid=" + settings.STUDENT_ID + "&action=form")
 
+    pushSpointit("logged in")
+
     # wait for page to load before finding elements
     time.sleep(2)
 
@@ -38,6 +44,8 @@ def getInitialGrades(driver, classes, initialGrades):
   for subject in settings.classes:
     intialGrade = driver.find_element(By.XPATH, settings.classes[subject]).text
     initialGrades[subject] = intialGrade
+
+  print(initialGrades)
 
 def logout(driver):
   driver.get("https://parents.ebnet.org/genesis/parents?logout=true")
@@ -73,6 +81,10 @@ def sendNotification(method, gradeChangedMessage):
     except Exception as e:
       print(e)
 
+  elif (method.lower() == "push"):
+    pushSpointit(gradeChangedMessage)
+
+
 def checkAndUpdateGrades(driver, previousGrades):
 
     driver.get("https://parents.ebnet.org/genesis/parents?tab1=studentdata&tab2=gradebook&tab3=weeklysummary&studentid=" + settings.STUDENT_ID + "&action=form")
@@ -88,3 +100,9 @@ def checkAndUpdateGrades(driver, previousGrades):
           print(subject + " grade changed from " + str(previousGrade) + " to " + str(newGrade))
           sendNotification(settings.NOTIFICATION_METHOD, subject + " grade changed from " + str(previousGrade) + " to " + str(newGrade))
           previousGrades[subject] = newGrade
+
+        print("checked - grades not changed")
+        sendNotification(settings.NOTIFICATION_METHOD, subject + " grade not changed, still is " + str(newGrade))
+
+def pushSpointit(message):
+  response = resource.push(message)
